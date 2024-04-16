@@ -31,6 +31,14 @@ canvas = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 canvas.pack()
 
 # Add the rest of your game code here
+#Define the Snake class
+class Snake:
+    def __init__(self):
+        self.segments = [(100, 100)] #This line creates an attribute called segments for the object (self). 
+        #It's a list containing a single tuple (100, 100). This tuple represents the initial position of the snake.
+        self.direction = "Right"   #This line creates another attribute called direction for the object (self). 
+        #It's a string set to "Right", indicating the initial direction of the snake.
+
 
 # Start the tkinter event loop
 window.mainloop()
