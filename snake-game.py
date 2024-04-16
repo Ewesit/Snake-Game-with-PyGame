@@ -1,4 +1,5 @@
 #import tkinter
 
-import tkinter as tk
-import random
+from tkinter import *
+window = Tk()
+window.mainloop()
