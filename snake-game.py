@@ -49,19 +49,33 @@ class Snake:
         self.segments = [new_head] + self.segments[:-1]
 
     def change_direction(self, event):
-        if event.keysym in ["Up", "Down", "Left", "Right"]:
-            self.direction = event.keysym
-        if event.keysym == "Up" and self.direction != "Down":
-            self.direction = "Up"
-        elif event.keysym == "Down" and self.direction != "Up":
-            self.direction = "Down"
-        elif event.keysym == "Left" and self.direction != "Right":
-            self.direction = "Left"
-        elif event.keysym == "Right" and self.direction != "Left":
-            self.direction = "Right"
+        global IN_GAME
+        if IN_GAME:
+            if event.keysym in ["Up", "Down", "Left", "Right"]:
+                self.direction = event.keysym
+            if event.keysym == "Up" and self.direction != "Down":
+                self.direction = "Up"
+            elif event.keysym == "Down" and self.direction != "Up":
+                self.direction = "Down"
+            elif event.keysym == "Left" and self.direction != "Right":
+                self.direction = "Left"
+            elif event.keysym == "Right" and self.direction != "Left":
+                self.direction = "Right"
+        else:
+            if event.keysym == "Return":
+                self.restart_game()
+
 
     def add_segment(self):
         self.segments.append(self.segments[-1])
+    
+    def restart_game(self):
+        global IN_GAME
+        IN_GAME = True
+        self.segments = [(100, 100)]
+        self.direction = "Right"
+        food.position = (SEG_SIZE * random.randint(0, (WIDTH-SEG_SIZE)//SEG_SIZE),
+                        SEG_SIZE * random.randint(0, (HEIGHT-SEG_SIZE)//SEG_SIZE))
 
 # Define the Food class
 class Food:
